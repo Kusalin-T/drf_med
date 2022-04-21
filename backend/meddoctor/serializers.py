@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import MedAdmin
+from .models import MedDoctor
 
 
-class MedAdminSerializer(serializers.ModelSerializer):
+class MedDoctorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MedAdmin
+        model = MedDoctor
         fields = [
             'user',
             'pk',
