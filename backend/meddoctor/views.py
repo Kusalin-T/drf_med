@@ -2,7 +2,7 @@ from rest_framework import generics, authentication, permissions
 
 from .models import MedDoctor
 from .serializers import MedDoctorSerializer
-from .permissions import UserOnlyPermission
+from .permissions import UserDoctorRetrievePermission
 
 class MedDoctorListCreateAPIView(generics.ListCreateAPIView):
     queryset = MedDoctor.objects.all()
@@ -20,10 +20,10 @@ class MedDoctorRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIVie
 
 meddoctor_retrieveupdatedestroy_view = MedDoctorRetrieveUpdateDestroyAPIView.as_view()
 
-class MedDoctorRetrieveAPIView(generics.RetrieveAPIView, UserOnlyPermission):
+class MedDoctorRetrieveAPIView(generics.RetrieveAPIView, UserDoctorRetrievePermission):
     queryset = MedDoctor.objects.all()
     serializer_class = MedDoctorSerializer
     authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [UserOnlyPermission|permissions.IsAdminUser]
+    permission_classes = [UserDoctorRetrievePermission|permissions.IsAdminUser]
 
 meddoctor_retrieve_view = MedDoctorRetrieveAPIView.as_view()

@@ -2,7 +2,7 @@ from rest_framework import generics, authentication, permissions
 
 from .models import MedPatient
 from .serializers import MedPatientSerializer
-from .permissions import UserOnlyPermission
+from .permissions import UserPatientRetrievePermission 
 
 class MedPatientListCreateAPIView(generics.ListCreateAPIView):
     queryset = MedPatient.objects.all()
@@ -20,10 +20,10 @@ class MedPatientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIVi
 
 medpatient_retrieveupdatedestroy_view = MedPatientRetrieveUpdateDestroyAPIView.as_view()
 
-class MedPatientRetrieveAPIView(generics.RetrieveAPIView, UserOnlyPermission):
+class MedPatientRetrieveAPIView(generics.RetrieveAPIView, UserPatientRetrievePermission ):
     queryset = MedPatient.objects.all()
     serializer_class = MedPatientSerializer
     authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [UserOnlyPermission|permissions.IsAdminUser]
+    permission_classes = [UserPatientRetrievePermission |permissions.IsAdminUser]
 
 medpatient_retrieve_view = MedPatientRetrieveAPIView.as_view()
