@@ -6,6 +6,7 @@ from .serializers import MedAdminSerializer
 
 
 class MedAdminListCreateAPIView(generics.ListCreateAPIView):
+
     queryset = MedAdmin.objects.all()
     serializer_class = MedAdminSerializer
     authentication_classes = [authentication.SessionAuthentication]

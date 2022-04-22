@@ -8,6 +8,7 @@ from medadmin.serializers import MedAdminSerializer
 
 @api_view(["GET","POST"])
 def api_home(request, *args, **kwargs):
+    #dummy implementation
     instance = MedAdmin.objects.all().order_by("?").first()
     data={}
     if instance:
